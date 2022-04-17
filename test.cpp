@@ -1,18 +1,19 @@
-#include <bits/stdc++.h>
+#include <bits/stdc++.h>ơ
 using namespace std;
 
-// Node của danh sách liên kết đôi
+// Node for doubly linked listed
 struct Node {
 	int data;
 	struct Node* prev, *next;
 };
 
-// Tạo node
+// node initing
 Node* getNode(int data)
 {
+	// allocate node
 	// struct Node* newNode =
 	// 	(struct Node*)malloc(sizeof(struct Node));
-    struct Node* newNode = new Node;
+	Node* newNode = new Node;
 	// put in the data
 	newNode->data = data;
 	newNode->prev = newNode->next = NULL;
@@ -21,9 +22,9 @@ Node* getNode(int data)
 
 // function to insert a new node in sorted way in
 // a sorted doubly linked list
-void sortedInsert(Node** head_ref, Node* newNode)
+void sortedInsert(struct Node** head_ref, struct Node* newNode)
 {
-	Node* current;
+	struct Node* current;
 
 	// if list is empty
 	if (*head_ref == NULL)
@@ -31,7 +32,6 @@ void sortedInsert(Node** head_ref, Node* newNode)
 
 	// if the node is to be inserted at the beginning
 	// of the doubly linked list
-    // Thêm vào đầu
 	else if ((*head_ref)->data >= newNode->data) {
 		newNode->next = *head_ref;
 		newNode->next->prev = newNode;
@@ -90,13 +90,12 @@ void insertionSort(struct Node** head_ref)
 }
 
 // function to print the doubly linked list
-void printList(Node* head)
+void printList(struct Node* head)
 {
 	while (head != NULL) {
 		cout << head->data << " ";
 		head = head->next;
 	}
-    cout<<endl;
 }
 
 // function to insert a node at the beginning of
@@ -136,12 +135,12 @@ int main()
 	push(&head, 12);
 	push(&head, 8);
 
-	cout << "Doubly Linked List Before Sorting";
+	cout << "Doubly Linked List Before Sortingn";
 	printList(head);
 
 	insertionSort(&head);
 
-	cout << "nDoubly Linked List After Sorting";
+	cout << "nDoubly Linked List After Sortingn";
 	printList(head);
 
 	return 0;
