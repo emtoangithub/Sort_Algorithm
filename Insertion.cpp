@@ -1,94 +1,17 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
-struct node
+void insertion_Sort(int a[], int n)
 {
-    int data;
-    node* next;
-    node* prev;
-};
-struct list
-{
-    node* head;
-    node* tail;
-};
-void initlist(list &l)
-{
-    l.head = l.tail = NULL;
-}
-node* initnode(int x)
-{
-    node* p = new node;
-    if (p == NULL)
+    int pos, current;
+    for (int  i = 1; i < n; i++)
     {
-        cout<<"Memory is not allocated";
-        return NULL;
-    }
-    p->next = p->prev = NULL;
-    p->data = x;
-    return p;
-}
-void addfirst(list &l , node* p)
-{
-    if (l.head == NULL)
-    {
-        l.head = l.tail = p;
-    }
-    else
-    {
-        p->next = l.head;
-        l.head->prev = p;
-        l.head = p;
-    }
-}
-void addlast(list &l , node* p)
-{
-    if (l.head == NULL)
-    {
-        l.head = l.tail = p;
-    }
-    else
-    {
-        l.tail->next = p;
-        p->prev = l.tail;
-        l.tail = p;
-    }
-}
-void sort(list &l)
-{
-    node *p = new node;
-    for (node* q = l.head->next; q != NULL; q = q->next)
-    {
-        p = q->prev;
-        while (p != NULL && p->data > q->data)
+        current = a[i];
+        pos = i - 1;
+        while (pos >= 0 && a[pos] < current)
         {
-            swap(p->data, q->data);
-            p = p->prev;
+            a[pos + 1] = a[pos];
+            pos--;
         }
+        a[pos + 1] = current;
     }
-}
-void xuat(const list &l)
-{
-    node* p = new node;
-    p = l.head;
-    while (p != NULL)
-    {
-        cout<<p->data<<" ";
-        p = p->next;
-    }
-    cout<<endl;
-}
-int main()
-{
-    list l;
-    initlist(l);
-    node* p = new node;
-    int n;
-    for (int i = 0; i < 5; i++)
-    {
-        cin>>n;
-        p = initnode(n);
-        addlast(l, p);
-    }
-    sort(l);
-    xuat(l);
 }
